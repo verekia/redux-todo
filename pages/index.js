@@ -8,7 +8,7 @@ const IndexPage = () => {
 
   return (
     <>
-      <h1>{count}</h1>
+      <h1 className="count">{count}</h1>
       <button onClick={() => dispatch(increment())}>Increment</button>
       <button onClick={() => dispatch(decrement())}>Decrement</button>
       <button onClick={() => dispatch(add(5))}>Add 5</button>
