@@ -13,6 +13,7 @@ export default function Input() {
         content: newTodo,
       },
     })
+    setNewTodo('')
   }
 
   return (
