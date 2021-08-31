@@ -1,19 +1,35 @@
 import React from 'react'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 
 export default function Todos() {
+  const dispatch = useDispatch()
   const todos = useSelector(state => state.todos)
+  const deleteTodo = id => {
+    dispatch({ type: 'DELETE_TODO', payload: id })
+  }
 
-  const list = todos.length ? (
-    todos.map(todo => {
-      return (
-        <ul key={todo.id}>
-          <li>{todo.content}</li>
-        </ul>
-      )
-    })
-  ) : (
-    <p>You have no task</p>
+  return (
+    <div>
+      {todos ? (
+        todos.map(todo => {
+          return (
+            <ul key={todo.id}>
+              <li>
+                {todo.content}
+                <button
+                  onClick={() => {
+                    deleteTodo(todo.id)
+                  }}
+                >
+                  Delete
+                </button>
+              </li>
+            </ul>
+          )
+        })
+      ) : (
+        <p>You have no task</p>
+      )}
+    </div>
   )
-  return <div>{list}</div>
 }
