@@ -1,21 +1,40 @@
-import Input from './Input'
-import Todos from './Todos'
-
+import Input from '../components/Input'
+import Tasks from '../components/Tasks/Tasks'
 const IndexPage = () => {
   return (
-    <>
-      <h1>My Todos</h1>
-      <Input />
-      <Todos />
-
-      {/* <h1 className="count">
-        {count} (double: {doubleCount})
-      </h1>
-      <button onClick={() => dispatch(increment())}>Increment</button>
-      <button onClick={() => dispatch(decrement())}>Decrement</button>
-      <button onClick={() => dispatch(add(5))}>Add 5</button>
-      <button onClick={() => dispatch(add(10))}>Add 10</button> */}
-    </>
+    <div
+      style={{
+        height: '100vh',
+        textAlign: 'center',
+      }}
+    >
+      <div
+        style={{
+          backgroundColor: 'white',
+          display: 'inline-block',
+        }}
+      >
+        <h1
+          style={{
+            backgroundColor: 'rgb(245,245,245)',
+            fontSize: '100px',
+            color: 'rgba(175, 47, 47, 0.15)',
+            textAlign: 'center',
+          }}
+        >
+          Todos
+        </h1>
+        <div
+          style={{
+            boxShadow:
+              '0 1px 5px 0 rgb(0 0 0 / 20%), 0 2px 2px 0 rgb(0 0 0 / 14%),0 3px 1px -2px rgb(0 0 0 / 12%)',
+          }}
+        >
+          <Input />
+          <Tasks />
+        </div>
+      </div>
+    </div>
   )
 }
 
