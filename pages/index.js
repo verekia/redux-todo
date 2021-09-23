@@ -1,23 +1,32 @@
 import { useState } from 'react'
 
 const IndexPage = () => {
-  const [count, setCount] = useState(0)
+  const [todos, setTodos] = useState([])
+  const [inputValue, setInputValue] = useState('')
 
-  const doubleCount = count * 2
+  const handleSubmit = e => {
+    e.preventDefault()
+    setTodos([...todos, { id: Math.random(), content: inputValue, isCompleted: false }])
+    setInputValue('')
+  }
 
-  const handleIncrement = () => setCount(count + 1)
-  const handleDecrement = () => setCount(count - 1)
-  const handleAdd = num => setCount(count + num)
+  const handleDelete = id => {
+    setTodos(todos.filter(t => t.id !== id))
+  }
 
   return (
     <>
-      <h1 className="count">
-        {count} (double: {doubleCount})
-      </h1>
-      <button onClick={handleIncrement}>Increment</button>
-      <button onClick={handleDecrement}>Decrement</button>
-      <button onClick={() => handleAdd(5)}>Add 5</button>
-      <button onClick={() => handleAdd(10)}>Add 10</button>
+      <form onSubmit={handleSubmit}>
+        <input value={inputValue} onChange={e => setInputValue(e.target.value)} />
+        <button type="submit">Add todo</button>
+      </form>
+      <ul>
+        {todos.map(t => (
+          <li key={t.id}>
+            {t.content} <button onClick={() => handleDelete(t.id)}>Delete</button>
+          </li>
+        ))}
+      </ul>
     </>
   )
 }
