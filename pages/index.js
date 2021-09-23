@@ -1,21 +1,29 @@
-import { useSelector, useDispatch } from 'react-redux'
-
-import { add, decrement, increment, countSelector, doubleCountSelector } from '../lib/redux'
+import { useState } from 'react'
 
 const IndexPage = () => {
-  const dispatch = useDispatch()
-  const count = useSelector(countSelector)
-  const doubleCount = useSelector(doubleCountSelector)
+  const [count, setCount] = useState(0)
+
+  const doubleCount = count * 2
+
+  const handleIncrementClick = () => {
+    setCount(count + 1)
+  }
+  const handleDecrementClick = () => {
+    setCount(count - 1)
+  }
+  const handleAdd = num => {
+    setCount(count + num)
+  }
 
   return (
     <>
       <h1 className="count">
         {count} (double: {doubleCount})
       </h1>
-      <button onClick={() => dispatch(increment())}>Increment</button>
-      <button onClick={() => dispatch(decrement())}>Decrement</button>
-      <button onClick={() => dispatch(add(5))}>Add 5</button>
-      <button onClick={() => dispatch(add(10))}>Add 10</button>
+      <button onClick={handleIncrementClick}>Increment</button>
+      <button onClick={handleDecrementClick}>Decrement</button>
+      <button onClick={() => handleAdd(5)}>Add 5</button>
+      <button onClick={() => handleAdd(10)}>Add 10</button>
     </>
   )
 }
