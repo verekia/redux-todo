@@ -1,29 +1,55 @@
 import { useState } from 'react'
 
+/*
+  todos:
+  [
+    { id: 1234, content: 'Hello', isCompleted: true },
+    { id: 2345, content: 'Hi', isCompleted: false },
+  ]
+*/
+
 const IndexPage = () => {
-  const [count, setCount] = useState(0)
+  const [todos, setTodos] = useState([])
+  const [newTodoContent, setNewTodoContent] = useState('')
 
-  const doubleCount = count * 2
+  const submitHandler = e => {
+    e.preventDefault()
+    setTodos([...todos, { id: Math.random(), content: newTodoContent, isCompleted: false }])
+    setNewTodoContent('')
+  }
 
-  const handleIncrementClick = () => {
-    setCount(count + 1)
+  const handleDelete = id => {
+    const remainingTodos = todos.filter(todo => id !== todo.id)
+    setTodos(remainingTodos)
   }
-  const handleDecrementClick = () => {
-    setCount(count - 1)
-  }
-  const handleAdd = num => {
-    setCount(count + num)
+
+  const handleComplete = id => {
+    const updatedTask = todos.map(todo => {
+      if (id === todo.id) {
+        return { ...todo, isCompleted: !todo.isCompleted }
+      }
+      return todo
+    })
+    setTodos(updatedTask)
   }
 
   return (
     <>
-      <h1 className="count">
-        {count} (double: {doubleCount})
-      </h1>
-      <button onClick={handleIncrementClick}>Increment</button>
-      <button onClick={handleDecrementClick}>Decrement</button>
-      <button onClick={() => handleAdd(5)}>Add 5</button>
-      <button onClick={() => handleAdd(10)}>Add 10</button>
+      <form onSubmit={submitHandler}>
+        <input value={newTodoContent} onChange={e => setNewTodoContent(e.target.value)} />
+        <button type="submit">Add todo</button>
+      </form>
+      <ul>
+        {todos.map(t => (
+          <li key={t.id}>
+            <button onClick={() => handleComplete(t.id)}>Done</button>
+            <span style={{ textDecoration: t.isCompleted ? 'line-through' : 'none' }}>
+              {t.content}
+            </span>{' '}
+            <button onClick={() => handleDelete(t.id)}>Delete</button>
+          </li>
+        ))}
+      </ul>
     </>
   )
 }
