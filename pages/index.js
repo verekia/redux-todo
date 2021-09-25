@@ -1,13 +1,5 @@
 import { useState } from 'react'
 
-/*
-  todos:
-  [
-    { id: 1234, content: 'Hello', isCompleted: true },
-    { id: 2345, content: 'Hi', isCompleted: false },
-  ]
-*/
-
 const IndexPage = () => {
   const [todos, setTodos] = useState([])
   const [newTodoContent, setNewTodoContent] = useState('')
@@ -61,7 +53,7 @@ const IndexPage = () => {
             <button onClick={() => handleComplete(t.id)}>Done</button>
             <span style={{ textDecoration: t.isCompleted ? 'line-through' : 'none' }}>
               {t.content}
-            </span>{' '}
+            </span>
             <button onClick={() => {}}>Edit</button>
             <button onClick={() => handleDelete(t.id)}>Delete</button>
           </li>
