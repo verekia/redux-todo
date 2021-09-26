@@ -1,69 +1,82 @@
-import { useState } from 'react'
+import { useState } from 'react';
+
+import Todo from './src/Todo';
+import Form from './src/Form';
+import FilterButton from './src/FilterButton';
 
 const IndexPage = () => {
-  const [todos, setTodos] = useState([])
-  const [newTodoContent, setNewTodoContent] = useState('')
-  const [filter, setFilter] = useState('all')
+  const [todos, setTodos] = useState([]);
+  const [newTodoContent, setNewTodoContent] = useState('');
+  const [filter, setFilter] = useState('all');
 
   const submitHandler = e => {
-    e.preventDefault()
+    e.preventDefault();
     if (newTodoContent.trim().length === 0) {
-      alert('Task can not be empty!')
-      return
+      alert('Task can not be empty!');
+      return;
     } else {
-      setTodos([...todos, { id: Math.random(), content: newTodoContent, isCompleted: false }])
+      setTodos([...todos, { id: Math.random(), content: newTodoContent, isCompleted: false }]);
     }
-    setNewTodoContent('')
-  }
+    setNewTodoContent('');
+  };
 
   const handleDelete = id => {
-    const remainingTodos = todos.filter(todo => id !== todo.id)
-    setTodos(remainingTodos)
-  }
+    const remainingTodos = todos.filter(todo => id !== todo.id);
+    setTodos(remainingTodos);
+  };
 
   const handleComplete = id => {
     const updatedTask = todos.map(todo => {
       if (id === todo.id) {
-        return { ...todo, isCompleted: !todo.isCompleted }
+        return { ...todo, isCompleted: !todo.isCompleted };
       }
-      return todo
-    })
-    setTodos(updatedTask)
-  }
+      return todo;
+    });
+    setTodos(updatedTask);
+  };
+
+  const editTodo = (id, newContent) => {
+    const editedTodo = todos.map(t => {
+      if (id === t.id) {
+        return { ...t, content: newContent };
+      }
+      return t;
+    });
+    setTodos(editedTodo);
+  };
 
   const filteredTodo = todos.filter(todo => {
-    if (filter === 'active') return !todo.isCompleted
-    if (filter === 'completed') return todo.isCompleted
-    if (filter === 'all') return true
-  })
+    if (filter === 'active') return !todo.isCompleted;
+    if (filter === 'completed') return todo.isCompleted;
+    if (filter === 'all') return true;
+  });
 
-  const taskNoun = todos.length > 1 ? 'tasks' : 'task'
-  const taskTest = `${todos.length} ${taskNoun} remained!`
+  const taskNoun = todos.length > 1 ? 'tasks' : 'task';
+  const taskTest = `${todos.length} ${taskNoun} remained!`;
 
   return (
     <>
-      <form onSubmit={submitHandler}>
-        <input value={newTodoContent} onChange={e => setNewTodoContent(e.target.value)} />
-        <button type="submit">Add todo</button>
-      </form>
-      {taskTest}
+      <Form
+        submitHandler={submitHandler}
+        newTodoContent={newTodoContent}
+        setNewTodoContent={setNewTodoContent}
+      />
       <ul>
+        {taskTest}
         {filteredTodo.map(t => (
-          <li key={t.id}>
-            <button onClick={() => handleComplete(t.id)}>Done</button>
-            <span style={{ textDecoration: t.isCompleted ? 'line-through' : 'none' }}>
-              {t.content}
-            </span>
-            <button onClick={() => {}}>Edit</button>
-            <button onClick={() => handleDelete(t.id)}>Delete</button>
-          </li>
+          <Todo
+            id={t.id}
+            content={t.content}
+            isCompleted={t.isCompleted}
+            handleComplete={handleComplete}
+            handleDelete={handleDelete}
+            editTodo={editTodo}
+          />
         ))}
       </ul>
-      <button onClick={() => setFilter('all')}>All</button>
-      <button onClick={() => setFilter('active')}>Active</button>
-      <button onClick={() => setFilter('completed')}>Completed</button>
+      <FilterButton setFilter={setFilter} />
     </>
-  )
-}
+  );
+};
 
-export default IndexPage
+export default IndexPage;
