@@ -1,22 +1,38 @@
+import { useState } from 'react'
+
 import { useSelector, useDispatch } from 'react-redux'
 
-import { add, decrement, increment, countSelector, doubleCountSelector } from '../lib/redux'
+import { add, decrement, increment } from '../lib/redux'
 
 const IndexPage = () => {
+  const [todos, setTodos] = useState([])
+  const [inputValue, setInputValue] = useState('')
   const dispatch = useDispatch()
-  const count = useSelector(countSelector)
-  const doubleCount = useSelector(doubleCountSelector)
+
+  const handleSubmit = e => {
+    e.preventDefault()
+    setTodos([...todos, { id: Math.random(), content: inputValue, done: false }])
+    setInputValue('')
+  }
 
   return (
-    <>
+    <div>
       <h1 className="count">
-        {count} (double: {doubleCount})
+        <div>
+          {
+            todos.length > 0 ?
+              todos.map((t) => (
+                <p>{t.content}</p>
+              )) :
+              <p>"No tasks"</p>
+          }
+        </div>
       </h1>
-      <button onClick={() => dispatch(increment())}>Increment</button>
-      <button onClick={() => dispatch(decrement())}>Decrement</button>
-      <button onClick={() => dispatch(add(5))}>Add 5</button>
-      <button onClick={() => dispatch(add(10))}>Add 10</button>
-    </>
+      <form onSubmit={handleSubmit}>
+        <input value={inputValue} onChange={e => setInputValue(e.target.value)} />
+        <button type="submit">Add task</button>
+      </form>
+    </div>
   )
 }
 
