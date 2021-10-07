@@ -101,15 +101,12 @@ const IndexPage = () => {
                       <p>{t.content}</p>
                     </div>
                   )) :
-                  <p>"No tasks"</p>
+                  <div class="horizontal-or-flex-only padding-edge align-items-center grey-solid-top-bottom justify-content-flex-start background-todos-half">
+                    <p>"No tasks"</p>
+                  </div>
               }
               <div
                 class="horizontal-or-flex-only padding-edge align-items-center grey-solid-top-bottom justify-content-flex-start background-todos-half">
-              </div>
-              <div
-                class="horizontal-or-flex-only grey-solid-top-bottom padding-edge align-items-center justify-content-flex-start background-todos-half">
-                <input type="radio" checked="checked" />
-                <p>Eat</p>
               </div>
             </div>
             <div
