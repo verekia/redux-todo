@@ -1,32 +1,35 @@
 import { useState } from 'react'
 
-import { useSelector, createSelector, useDispatch } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 
-import { unfinishedTaskSelector } from '../lib/redux'
+import { complete, add, view, reading, tasks, tasksLengthAll } from '../lib/redux'
+
 
 const IndexPage = () => {
-  const [todos, setTodos] = useState([])
   const [inputValue, setInputValue] = useState('')
-  const tasks = useSelector(unfinishedTaskSelector)
+  const todos = useSelector(tasks)
+  const read = useSelector(reading)
+  const numberTasks = useSelector(tasksLengthAll)
+  const dispatch = useDispatch()
 
   const handleSubmit = e => {
     e.preventDefault()
     let id = Math.random()
-    console.log(id)
-    setTodos([...todos, { id, content: inputValue, done: false }])
+    dispatch(add({ id, content: inputValue, done: false }))
     setInputValue('')
   }
 
   const toggleTodo = t => {
-    let newTodos = todos
-    newTodos = newTodos.map(todo => {
-      if (todo.id === t) return { ...todo, done: !todo.done }
-      return todo
-    })
-    setTodos(newTodos)
+    let todo = todos.filter(to => to.id === t)
+    todo = todo[0]
+    todo.done = true
+    dispatch(complete(t))
   }
 
-
+  const toggleReading = r => {
+    dispatch(view(r))
+    console.log()
+  }
 
   return (
     <div className="horizontal-or-flex-only">
@@ -80,11 +83,11 @@ const IndexPage = () => {
       </div>
       <div className="horizontal-or-flex-only background align-items-center flex-direction-column">
         <div
-          className="horizontal-or-flex-only background-items justify-content-space-between flex-direction-column fourty-high">
+          className="horizontal-or-flex-only background-items justify-content-space-between flex-direction-column">
           <div className="background-title horizontal-or-flex-only justify-content-space-around">
             <h1>todos</h1>
           </div>
-          <div className="background-todos drop-shadow-edge">
+          <div className="background-todos horizontal-or-flex-only flex-direction-column flex-grow-10 drop-shadow-edge">
             <form onSubmit={handleSubmit} className="horizontal-or-flex-only background-todos-twenty-five drop-shadow-edge">
               <div className="horizontal-or-flex-only padding-edge align-items-center">
                 <i className="fas fa-chevron-down"></i>
@@ -93,7 +96,7 @@ const IndexPage = () => {
             </form>
             <div className="horizontal-or-flex-only background-todos-fifty-five flex-direction-column flex-grow-10">
               {
-                todos.length > 0 ?
+                todos ?
                   todos.map(t => (
                     <div className="horizontal-or-flex-only padding-edge align-items-center grey-solid-top-bottom justify-content-flex-start background-todos-half" key={t.id}>
                       <input type="radio" onChange={() => toggleTodo(t.id)} checked={t.done ? true : false} />
@@ -111,13 +114,13 @@ const IndexPage = () => {
             <div
               className="horizontal-or-flex-only background-todos-twenty justify-content-flex-start align-items-center">
               <div className="horizontal-or-flex-only justify-content-flex-start half-width padding-edge">
-                <p>{tasks} items left</p>
+                <p>{numberTasks} items</p>
               </div>
               <div className="horizontal-or-flex-only justify-content-flex-start half-width">
                 <div className="horizontal-or-flex-only justify-content-space-around state-tasks">
-                  <button>All</button>
-                  <button>Active</button>
-                  <button>Completed</button>
+                  <button onClick={() => toggleReading("reading")} className={read === "done" || read === "undone" ? "button-mode" : "button-mode-active"}>All</button>
+                  <button onClick={() => toggleReading("undone")} className={read === "undone" ? "button-mode-active" : "button-mode"}>Active</button>
+                  <button onClick={() => toggleReading("done")} className={read === "done" ? "button-mode-active" : "button-mode"}>Completed</button>
                 </div>
               </div>
             </div>
