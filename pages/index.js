@@ -57,7 +57,7 @@ const IndexPage = () => {
           </div>
         </div>
         <div
-          className="menu-twenty-high horizontal-or-flex-only dotted-top-bottom align-items-center justify-content-space-around flex-direction-column padding-top">
+          className="menu-twenty-high horizontal-or-flex-only dotted-top-bottom align-items-center justify-content-space-around flex-direction-column padding-top-and-bottom">
           <FontAwesomeIcon icon={faQuoteLeft} />
           <div className="speech-bubble-clippy horizontal-or-flex-only justify-content-space-around">
             <p className="speech-bubble-clippy-text">React is a JavaScript library for creating user interfaces. Its
@@ -72,7 +72,7 @@ const IndexPage = () => {
         </div>
         <div className="menu-thirty-five-high">
           <div
-            className="horizontal-or-flex-only menu-half-high justify-content-space-around flex-direction-column padding-edge padding-top">
+            className="horizontal-or-flex-only menu-half-high justify-content-space-around flex-direction-column padding-edge padding-top-and-bottom">
             <h2 className="titles-biggest">Official Resources</h2>
             <p className="titles-smallest">Tutorial</p>
             <p className="titles-smallest">Philosophy</p>
@@ -95,13 +95,13 @@ const IndexPage = () => {
             <h1>todos</h1>
           </div>
           <div className="background-todos horizontal-or-flex-only flex-direction-column flex-grow-10 drop-shadow-edge">
-            <form onSubmit={handleSubmit} className="horizontal-or-flex-only background-todos-twenty-five drop-shadow-edge">
+            <form onSubmit={handleSubmit} className="horizontal-or-flex-only background-todos-form drop-shadow-edge">
               <div className="horizontal-or-flex-only padding-edge align-items-center">
                 <FontAwesomeIcon icon={faChevronDown} />
                 <input value={inputValue} className="no-outline" placeholder="What needs to be done?" onChange={e => setInputValue(e.target.value)} />
               </div>
             </form>
-            <div className="horizontal-or-flex-only background-todos-fifty-five flex-direction-column flex-grow-10">
+            <div className="horizontal-or-flex-only background-todos-list flex-direction-column flex-grow-10">
               {
                 todos ?
                   todos.map(t => {
@@ -141,7 +141,7 @@ const IndexPage = () => {
               </div>
             </div>
             <div
-              className="horizontal-or-flex-only background-todos-twenty justify-content-flex-start align-items-center">
+              className="horizontal-or-flex-only background-todos-footer justify-content-flex-start align-items-center">
               <div className="horizontal-or-flex-only justify-content-flex-start half-width padding-edge">
                 <p>{read === "all" && numberTasks}{read === "done" && numberCompleteTasks}{read === "undone" && numberIncompleteTasks} items</p>
               </div>

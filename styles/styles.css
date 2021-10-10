@@ -79,8 +79,6 @@ body {
   font-weight: lighter;
 }
 
-
-
 .titles-medium {
   margin-bottom: 0px;
   font-size: 18px;
@@ -128,11 +126,6 @@ body {
   color: #4d4d4d;
   font: Helvetica, Arial, sans-serif;
 }
-
-/* .titles, p[class*="titles"] {
-  margin-top: 0px;
-  font-size: 15px;
-} */
 
 .no-outline {
   border: none;
@@ -191,20 +184,20 @@ body {
   padding-left: 4%;
 }
 
-.padding-top {
+.padding-top-and-bottom {
   padding-top: 15px;
   padding-bottom: 9px;
 }
 
-.background-todos-twenty-five {
+.background-todos-form {
   height: 70.1px;
 }
 
-.background-todos-fifty-five {
+.background-todos-list {
   min-height: 154px;
 }
 
-.background-todos-twenty {
+.background-todos-footer {
   min-height: 56.1px;
   padding-top: 56.1px;
 }
