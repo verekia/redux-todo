@@ -2,6 +2,15 @@
   display: flex;
 }
 
+.delete-button {
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  margin-left: 310px;
+  color: rgba(61, 21, 21, 0.4);
+
+}
+
 
 .button-mode {
   border: none;
@@ -76,13 +85,21 @@ body {
 }
 
 .fa-quote-left {
-  left: 26px;
-  top: 334px;
+  left: 12px;
+  top: 288px;
+  position: absolute;
+  color: rgba(61, 21, 21, 0.2);
 }
 
 .fa-quote-right {
   left: 319px;
-  top: 437px;
+  top: 391px;
+  position: absolute;
+  color: rgba(61, 21, 21, 0.2);
+}
+
+.fa-chevron-down {
+  margin-right: 3px;
 }
 
 .speech-bubble-clippy-text {

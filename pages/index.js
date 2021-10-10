@@ -2,7 +2,9 @@ import { useState } from 'react'
 
 import { useSelector, useDispatch } from 'react-redux'
 
-import { complete, add, view, reading, tasks, tasksLengthAll } from '../lib/redux'
+import { complete, add, view, remove, reading, tasks, tasksLengthAll, tasksLengthIncomplete, tasksLengthComplete } from '../lib/redux'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faChevronDown, faTrash, faQuoteLeft, faQuoteRight } from '@fortawesome/free-solid-svg-icons'
 
 
 const IndexPage = () => {
@@ -10,6 +12,8 @@ const IndexPage = () => {
   const todos = useSelector(tasks)
   const read = useSelector(reading)
   const numberTasks = useSelector(tasksLengthAll)
+  const numberIncompleteTasks = useSelector(tasksLengthIncomplete)
+  const numberCompleteTasks = useSelector(tasksLengthComplete)
   const dispatch = useDispatch()
 
   const handleSubmit = e => {
@@ -28,6 +32,10 @@ const IndexPage = () => {
 
   const toggleReading = r => {
     dispatch(view(r))
+  }
+
+  const removeTodo = t => {
+    dispatch(remove(t))
   }
 
   return (
@@ -50,14 +58,14 @@ const IndexPage = () => {
         </div>
         <div
           className="menu-twenty-high horizontal-or-flex-only dotted-top-bottom align-items-center justify-content-space-around flex-direction-column padding-top">
-          <i className="fas fa-quote-left"></i>
+          <FontAwesomeIcon icon={faQuoteLeft} />
           <div className="speech-bubble-clippy horizontal-or-flex-only justify-content-space-around">
             <p className="speech-bubble-clippy-text">React is a JavaScript library for creating user interfaces. Its
               core principles are declarative code,
               efficiency, and flexibility. Simply specify what your component looks like and React will keep it
               up-to-date when the underlying data changes.</p>
           </div>
-          <i className="fas fa-quote-right"></i>
+          <FontAwesomeIcon icon={faQuoteRight} />
           <div className="horizontal-or-flex-only react-label-space justify-content-flex-end align-items-center wider">
             <p className="react-label">React</p>
           </div>
@@ -89,7 +97,7 @@ const IndexPage = () => {
           <div className="background-todos horizontal-or-flex-only flex-direction-column flex-grow-10 drop-shadow-edge">
             <form onSubmit={handleSubmit} className="horizontal-or-flex-only background-todos-twenty-five drop-shadow-edge">
               <div className="horizontal-or-flex-only padding-edge align-items-center">
-                <i className="fas fa-chevron-down"></i>
+                <FontAwesomeIcon icon={faChevronDown} />
                 <input value={inputValue} className="no-outline" placeholder="What needs to be done?" onChange={e => setInputValue(e.target.value)} />
               </div>
             </form>
@@ -102,6 +110,7 @@ const IndexPage = () => {
                         <div className="horizontal-or-flex-only padding-edge align-items-center grey-solid-top-bottom justify-content-flex-start background-todos-half" key={t.id}>
                           <input type="radio" onChange={() => toggleTodo(t.id)} checked={t.done ? true : false} />
                           <p>{t.content}</p>
+                          <button class="delete-button" onClick={() => removeTodo(t.id)}><FontAwesomeIcon icon={faTrash} /></button>
                         </div>
                       )
                     } else if (read === "done" && t.done) {
@@ -109,6 +118,7 @@ const IndexPage = () => {
                         <div className="horizontal-or-flex-only padding-edge align-items-center grey-solid-top-bottom justify-content-flex-start background-todos-half" key={t.id}>
                           <input type="radio" onChange={() => toggleTodo(t.id)} checked={t.done ? true : false} />
                           <p>{t.content}</p>
+                          <button class="delete-button" onClick={() => removeTodo(t.id)}><FontAwesomeIcon icon={faTrash} /></button>
                         </div>
                       )
                     } else if (read === "undone" && !t.done) {
@@ -116,6 +126,7 @@ const IndexPage = () => {
                         <div className="horizontal-or-flex-only padding-edge align-items-center grey-solid-top-bottom justify-content-flex-start background-todos-half" key={t.id}>
                           <input type="radio" onChange={() => toggleTodo(t.id)} checked={t.done ? true : false} />
                           <p>{t.content}</p>
+                          <button class="delete-button" onClick={() => removeTodo(t.id)}><FontAwesomeIcon icon={faTrash} /></button>
                         </div>
                       )
                     }
@@ -132,7 +143,7 @@ const IndexPage = () => {
             <div
               className="horizontal-or-flex-only background-todos-twenty justify-content-flex-start align-items-center">
               <div className="horizontal-or-flex-only justify-content-flex-start half-width padding-edge">
-                <p>{numberTasks} items</p>
+                <p>{read === "all" && numberTasks}{read === "done" && numberCompleteTasks}{read === "undone" && numberIncompleteTasks} items</p>
               </div>
               <div className="horizontal-or-flex-only justify-content-flex-start half-width">
                 <div className="horizontal-or-flex-only justify-content-space-around state-tasks">
