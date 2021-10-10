@@ -28,7 +28,6 @@ const IndexPage = () => {
 
   const toggleReading = r => {
     dispatch(view(r))
-    console.log()
   }
 
   return (
@@ -97,12 +96,31 @@ const IndexPage = () => {
             <div className="horizontal-or-flex-only background-todos-fifty-five flex-direction-column flex-grow-10">
               {
                 todos ?
-                  todos.map(t => (
-                    <div className="horizontal-or-flex-only padding-edge align-items-center grey-solid-top-bottom justify-content-flex-start background-todos-half" key={t.id}>
-                      <input type="radio" onChange={() => toggleTodo(t.id)} checked={t.done ? true : false} />
-                      <p>{t.content}</p>
-                    </div>
-                  )) :
+                  todos.map(t => {
+                    if (read === "all") {
+                      return (
+                        <div className="horizontal-or-flex-only padding-edge align-items-center grey-solid-top-bottom justify-content-flex-start background-todos-half" key={t.id}>
+                          <input type="radio" onChange={() => toggleTodo(t.id)} checked={t.done ? true : false} />
+                          <p>{t.content}</p>
+                        </div>
+                      )
+                    } else if (read === "done" && t.done) {
+                      return (
+                        <div className="horizontal-or-flex-only padding-edge align-items-center grey-solid-top-bottom justify-content-flex-start background-todos-half" key={t.id}>
+                          <input type="radio" onChange={() => toggleTodo(t.id)} checked={t.done ? true : false} />
+                          <p>{t.content}</p>
+                        </div>
+                      )
+                    } else if (read === "undone" && !t.done) {
+                      return (
+                        <div className="horizontal-or-flex-only padding-edge align-items-center grey-solid-top-bottom justify-content-flex-start background-todos-half" key={t.id}>
+                          <input type="radio" onChange={() => toggleTodo(t.id)} checked={t.done ? true : false} />
+                          <p>{t.content}</p>
+                        </div>
+                      )
+                    }
+                  }
+                  ) :
                   <div className="horizontal-or-flex-only padding-edge align-items-center grey-solid-top-bottom justify-content-flex-start background-todos-half">
                     <p>No tasks</p>
                   </div>
@@ -118,7 +136,7 @@ const IndexPage = () => {
               </div>
               <div className="horizontal-or-flex-only justify-content-flex-start half-width">
                 <div className="horizontal-or-flex-only justify-content-space-around state-tasks">
-                  <button onClick={() => toggleReading("reading")} className={read === "done" || read === "undone" ? "button-mode" : "button-mode-active"}>All</button>
+                  <button onClick={() => toggleReading("all")} className={read === "done" || read === "undone" ? "button-mode" : "button-mode-active"}>All</button>
                   <button onClick={() => toggleReading("undone")} className={read === "undone" ? "button-mode-active" : "button-mode"}>Active</button>
                   <button onClick={() => toggleReading("done")} className={read === "done" ? "button-mode-active" : "button-mode"}>Completed</button>
                 </div>
