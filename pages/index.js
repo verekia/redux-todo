@@ -38,6 +38,16 @@ const IndexPage = () => {
     dispatch(remove(t))
   }
 
+  const task = t => {
+    return (
+      <div className="horizontal-or-flex-only padding-edge align-items-center grey-solid-top-bottom justify-content-flex-start background-todos-half" key={t.id}>
+        <input type="radio" onChange={() => toggleTodo(t.id)} checked={t.done ? true : false} />
+        <p>{t.content}</p>
+        <button class="delete-button" onClick={() => removeTodo(t.id)}><FontAwesomeIcon icon={faTrash} /></button>
+      </div>
+    )
+  }
+
   return (
     <div className="horizontal-or-flex-only">
       <div className="menu">
@@ -106,29 +116,11 @@ const IndexPage = () => {
                 todos ?
                   todos.map(t => {
                     if (read === "all") {
-                      return (
-                        <div className="horizontal-or-flex-only padding-edge align-items-center grey-solid-top-bottom justify-content-flex-start background-todos-half" key={t.id}>
-                          <input type="radio" onChange={() => toggleTodo(t.id)} checked={t.done ? true : false} />
-                          <p>{t.content}</p>
-                          <button class="delete-button" onClick={() => removeTodo(t.id)}><FontAwesomeIcon icon={faTrash} /></button>
-                        </div>
-                      )
+                      return task(t)
                     } else if (read === "done" && t.done) {
-                      return (
-                        <div className="horizontal-or-flex-only padding-edge align-items-center grey-solid-top-bottom justify-content-flex-start background-todos-half" key={t.id}>
-                          <input type="radio" onChange={() => toggleTodo(t.id)} checked={t.done ? true : false} />
-                          <p>{t.content}</p>
-                          <button class="delete-button" onClick={() => removeTodo(t.id)}><FontAwesomeIcon icon={faTrash} /></button>
-                        </div>
-                      )
+                      return task(t)
                     } else if (read === "undone" && !t.done) {
-                      return (
-                        <div className="horizontal-or-flex-only padding-edge align-items-center grey-solid-top-bottom justify-content-flex-start background-todos-half" key={t.id}>
-                          <input type="radio" onChange={() => toggleTodo(t.id)} checked={t.done ? true : false} />
-                          <p>{t.content}</p>
-                          <button class="delete-button" onClick={() => removeTodo(t.id)}><FontAwesomeIcon icon={faTrash} /></button>
-                        </div>
-                      )
+                      return task(t)
                     }
                   }
                   ) :
