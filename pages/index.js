@@ -24,10 +24,6 @@ const IndexPage = () => {
   }
 
   const toggleTodo = t => {
-    let todo = todos.filter(to => to.id === t)
-    todo = todo[0]
-    todo.done = true
-    console.log(todo)
     dispatch(complete(t))
   }
 
