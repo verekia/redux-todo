@@ -1,9 +1,20 @@
-const Input = ({
-    handleSubmit,
-    inputValue,
-    setInputValue,
-    batch
-}) => {
+import { useState } from 'react'
+import { useSelector, useDispatch } from "react-redux"
+import { addTodo, batch, selectIsComplete } from "../Todos/todosSlice"
+
+const Input = () => {
+    const dispatch = useDispatch()
+    const isComplete = useSelector(selectIsComplete)
+    const [inputValue, setInputValue] = useState('')
+
+    const handleSubmit = (e) => {
+        e.preventDefault()
+        if (inputValue !== '') {
+            dispatch(addTodo(inputValue))
+            setInputValue('')
+        }
+    }
+
     return (
         <form
             onSubmit={handleSubmit}
@@ -14,7 +25,7 @@ const Input = ({
                 className="w-1/12 md:w-10 h-10 mx-2 md:mx-5 text-center text-lg md:text-3xl"
                 onClick={(e) => {
                     e.preventDefault()
-                    batch()
+                    dispatch(batch(isComplete))
                 }}
             >
                 &#8595;

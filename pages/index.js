@@ -1,4 +1,4 @@
-import Todos from '../features/todos/todos'
+import Todos from '../features/Todos/Todos'
 
 const IndexPage = () => {
   return (

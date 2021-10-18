@@ -1,9 +1,12 @@
+import { useDispatch, useSelector } from "react-redux"
+import { clear, selectActiveTodos } from "../Todos/todosSlice"
+
 const FiltersActions = ({
     view,
-    setView,
-    clear,
-    remaining
+    setView
 }) => {
+    const dispatch = useDispatch()
+    const remaining = useSelector(selectActiveTodos).length
     return (
         <div className="flex flex-wrap justify-between items-center w-full text-xs px-5">
             <div className="w-full md:w-2/12 my-5 md:py-5 text-center">{remaining} item{remaining !== 1 && 's'} left</div>
@@ -22,7 +25,7 @@ const FiltersActions = ({
                 }
             </div>
             <button
-                onClick={() => clear()}
+                onClick={() => dispatch(clear())}
                 className="w-full my-5 md:w-2/12 underline"
             >
                 Clear completed
