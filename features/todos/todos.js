@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import TodoMap from './todoMap'
+import TodoMap from '../todoMap/todoMap'
 import FiltersActions from '../filtersActions/filtersActions'
 import Input from '../input/input'
 
