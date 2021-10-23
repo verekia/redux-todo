@@ -3,9 +3,10 @@ import { useSelector, useDispatch } from 'react-redux'
 import { complete, add, view, remove, reading, tasks, tasksLengthAll, tasksLengthIncomplete, tasksLengthComplete } from '../lib/redux'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faChevronDown, faTrash, faQuoteLeft, faQuoteRight } from '@fortawesome/free-solid-svg-icons'
-import { todos } from '../data.js'
+// import { todos } from '../data.js'
+import { PrismaClient } from '@prisma/client'
 
-const IndexPage = () => {
+const IndexPage = ({ todos }) => {
   const [inputValue, setInputValue] = useState('')
   // const todos = useSelector(tasks)
   const read = useSelector(reading)
@@ -13,26 +14,6 @@ const IndexPage = () => {
   const numberIncompleteTasks = useSelector(tasksLengthIncomplete)
   const numberCompleteTasks = useSelector(tasksLengthComplete)
   const dispatch = useDispatch()
-
-  const getTodos = async (req, res) => {
-    const httpMethod = req.method;
-    const { content, done, id } = req.body;
-    switch (httpMethod) {
-      case 'GET':
-        res.status(200).json(jobs);
-        break;
-      case 'POST':
-        res.status(200).json({
-          content: content,
-          done: done,
-          id: id
-        });
-        break;
-      default:
-        res.setHeader('Allow', ['GET', 'POST']);
-        res.status(405).end(`Method ${httpMethod} not allowed.`);
-    }
-  }
 
   const handleSubmit = async e => {
     e.preventDefault()
@@ -52,10 +33,6 @@ const IndexPage = () => {
   const removeTodo = t => {
     dispatch(remove(t))
   }
-
-  useEffect(() => {
-    getTodos()
-  });
 
   const task = t => {
     return (
@@ -175,6 +152,18 @@ const IndexPage = () => {
       </div>
     </div>
   )
+}
+
+const prisma = new PrismaClient();
+
+export const getServerSideProps = async () => {
+  const allTodos = await prisma.todo.findMany();
+  console.log(allTodos)
+  return {
+    props: {
+      todos: allTodos
+    }
+  }
 }
 
 export default IndexPage
