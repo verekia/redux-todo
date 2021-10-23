@@ -8,8 +8,8 @@ import '../styles/styles.css'
 const store = createStore(
   reducer,
   typeof window !== 'undefined' &&
-    window.__REDUX_DEVTOOLS_EXTENSION__ &&
-    window.__REDUX_DEVTOOLS_EXTENSION__()
+  window.__REDUX_DEVTOOLS_EXTENSION__ &&
+  window.__REDUX_DEVTOOLS_EXTENSION__()
 )
 
 const App = ({ Component, pageProps }) => (

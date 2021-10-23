@@ -40,7 +40,7 @@ const IndexPage = () => {
       <div className="horizontal-or-flex-only padding-edge align-items-center grey-solid-top-bottom justify-content-flex-start background-todos-half" key={t.id}>
         <input type="radio" onChange={() => toggleTodo(t.id)} checked={t.done ? true : false} />
         <p>{t.content}</p>
-        <button class="delete-button" onClick={() => removeTodo(t.id)}><FontAwesomeIcon icon={faTrash} /></button>
+        <button className="delete-button" onClick={() => removeTodo(t.id)}><FontAwesomeIcon icon={faTrash} /></button>
       </div>
     )
   }
@@ -102,10 +102,10 @@ const IndexPage = () => {
             <h1>todos</h1>
           </div>
           <div className="background-todos horizontal-or-flex-only flex-direction-column flex-grow-10 drop-shadow-edge">
-            <form onSubmit={handleSubmit} className="horizontal-or-flex-only background-todos-form drop-shadow-edge">
+            <form action="http://localhost:3000/process_get" method="GET" onSubmit={handleSubmit} className="horizontal-or-flex-only background-todos-form drop-shadow-edge">
               <div className="horizontal-or-flex-only padding-edge align-items-center">
                 <FontAwesomeIcon icon={faChevronDown} />
-                <input value={inputValue} className="no-outline" placeholder="What needs to be done?" onChange={e => setInputValue(e.target.value)} />
+                <input value={inputValue} name="todo" className="no-outline" placeholder="What needs to be done?" onChange={e => setInputValue(e.target.value)} />
               </div>
             </form>
             <div className="horizontal-or-flex-only background-todos-list flex-direction-column flex-grow-10">
