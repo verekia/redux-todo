@@ -6,9 +6,19 @@ import { faChevronDown, faTrash, faQuoteLeft, faQuoteRight } from '@fortawesome/
 // import { todos } from '../data.js'
 import { PrismaClient } from '@prisma/client'
 
+const prisma = new PrismaClient();
+
+export const getServerSideProps = async () => {
+  const allTodos = await prisma.todo.findMany();
+  return {
+    props: {
+      todos: allTodos
+    }
+  }
+}
+
 const IndexPage = ({ todos }) => {
   const [inputValue, setInputValue] = useState('')
-  // const todos = useSelector(tasks)
   const read = useSelector(reading)
   const numberTasks = useSelector(tasksLengthAll)
   const numberIncompleteTasks = useSelector(tasksLengthIncomplete)
@@ -17,9 +27,23 @@ const IndexPage = ({ todos }) => {
 
   const handleSubmit = async e => {
     e.preventDefault()
-    let id = Math.random()
+    let id = Math.floor(Math.random() * 10)
+    console.log(id)
     dispatch(add({ id, content: inputValue, done: false }))
+    await saveTodo({ id: id, content: inputValue, done: false })
     setInputValue('')
+  }
+
+  const saveTodo = async todo => {
+    const response = await fetch('api/todos/todos', {
+      method: 'POST',
+      body: JSON.stringify(todo)
+    })
+    if (!response.ok) {
+      console.log(response.statusText)
+      throw new Error(response.statusText)
+    }
+    return await response.json()
   }
 
   const toggleTodo = t => {
@@ -152,18 +176,6 @@ const IndexPage = ({ todos }) => {
       </div>
     </div>
   )
-}
-
-const prisma = new PrismaClient();
-
-export const getServerSideProps = async () => {
-  const allTodos = await prisma.todo.findMany();
-  console.log(allTodos)
-  return {
-    props: {
-      todos: allTodos
-    }
-  }
 }
 
 export default IndexPage
