@@ -12,13 +12,14 @@ export const getServerSideProps = async () => {
   const allTodos = await prisma.todo.findMany();
   return {
     props: {
-      todos: allTodos
+      initialTodos: allTodos
     }
   }
 }
 
-const IndexPage = ({ todos }) => {
+const IndexPage = ({ initialTodos }) => {
   const [inputValue, setInputValue] = useState('')
+  const [todos, setTodos] = useState(initialTodos)
   const read = useSelector(reading)
   const numberTasks = useSelector(tasksLengthAll)
   const numberIncompleteTasks = useSelector(tasksLengthIncomplete)
@@ -28,8 +29,7 @@ const IndexPage = ({ todos }) => {
   const handleSubmit = async e => {
     e.preventDefault()
     let id = Math.floor(Math.random() * 10)
-    console.log(id)
-    dispatch(add({ id, content: inputValue, done: false }))
+    setTodos([{ id, content: inputValue, done: false }, ...todos])
     await saveTodo({ id: id, content: inputValue, done: false })
     setInputValue('')
   }
