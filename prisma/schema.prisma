@@ -12,6 +12,6 @@ datasource db {
 
 model Todo {
   id   Int @id
-  content String @unique
+  content String 
   done Boolean
 }

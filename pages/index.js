@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { complete, add, view, remove, reading, tasks, tasksLengthAll, tasksLengthIncomplete, tasksLengthComplete } from '../lib/redux'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faChevronDown, faTrash, faQuoteLeft, faQuoteRight } from '@fortawesome/free-solid-svg-icons'
-// import { todos } from '../data.js'
+import { v4 as uuidv4 } from 'uuid';
 import { PrismaClient } from '@prisma/client'
 
 const prisma = new PrismaClient();
@@ -25,12 +25,21 @@ const IndexPage = ({ initialTodos }) => {
   const numberIncompleteTasks = useSelector(tasksLengthIncomplete)
   const numberCompleteTasks = useSelector(tasksLengthComplete)
   const dispatch = useDispatch()
+  let j;
+  let id;
+  const generateId = () => {
 
+  }
   const handleSubmit = async e => {
     e.preventDefault()
-    let id = Math.floor(Math.random() * 10)
-    setTodos([{ id, content: inputValue, done: false }, ...todos])
-    await saveTodo({ id: id, content: inputValue, done: false })
+    id = uuidv4().split("")
+    id = id.map(u => {
+      return ((u !== "-") && (u.charCodeAt(0) < 65 && u.charCodeAt(0) < 90) && (u.charCodeAt(0) < 97 && u.charCodeAt(0) < 122)) ? parseInt(u, 10) : 0
+    })
+    let newId = parseInt((id.join("")), 10)
+    newId = Math.floor(newId / 1000000000000000000000000000000)
+    setTodos([{ id: newId, content: inputValue, done: false }, ...todos])
+    await saveTodo({ id: newId, content: inputValue, done: false })
     setInputValue('')
   }
 
