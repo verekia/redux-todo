@@ -27,9 +27,7 @@ const IndexPage = ({ initialTodos }) => {
   const dispatch = useDispatch()
   let j;
   let id;
-  const generateId = () => {
 
-  }
   const handleSubmit = async e => {
     e.preventDefault()
     id = uuidv4().split("")
@@ -55,16 +53,46 @@ const IndexPage = ({ initialTodos }) => {
     return await response.json()
   }
 
-  const toggleTodo = t => {
-    dispatch(complete(t))
+  const toggleTodo = async t => {
+    const todosFiltered = initialTodos.filter(todo => todo.id !== t)
+    const todoFiltered = initialTodos.filter(todo => todo.id === t)
+    todoFiltered[0].done = true
+    await updateTodo(todoFiltered[0])
+    setTodos([...todosFiltered, todoFiltered[0]])
   }
 
-  const toggleReading = r => {
-    dispatch(view(r))
+  const updateTodo = async (todo) => {
+    const response = await fetch(`/api/todos/todos`, {
+      method: 'PATCH',
+      body: todo.id
+    })
+    const data = await response.json()
+    console.log(data)
   }
 
-  const removeTodo = t => {
-    dispatch(remove(t))
+  const toggleReading = async r => {
+    // const todosFiltered = initialTodos.filter(todo => todo.id !== r)
+    // const todoFiltered = initialTodos.filter(todo => todo.id === r)
+    // todoFiltered.done = !todoFiltered.done
+    // setTodos([...todosFiltered, todoFiltered])
+    // await updateTodo(r)
+  }
+
+  const deleteTodo = async (todoId) => {
+    const response = await fetch(`/api/todos/todos`, {
+      method: 'DELETE',
+      body: todoId
+    })
+    const data = await response.json()
+    console.log(data)
+  }
+
+
+
+  const removeTodo = async t => {
+    const todosFiltered = initialTodos.filter(todo => todo.id !== t)
+    setTodos(todosFiltered)
+    await deleteTodo(t)
   }
 
   const task = t => {
