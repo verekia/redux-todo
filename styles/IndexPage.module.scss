@@ -95,16 +95,17 @@
   color: rgba(61, 21, 21, 0.2);
 }
 
-.fa-quote-left {
-  left: 12px;
-  top: 288px;
-  position: absolute;
-  color: rgba(61, 21, 21, 0.2);
-}
 
-.fa-quote-right {
-  left: 319px;
-  top: 391px;
+.faQuoteLeft {    
+  left: 12px;
+      top: 341px;
+      position: absolute;
+      color: rgba(61, 21, 21, 0.2);
+  }
+
+.faQuoteRight {
+  left: 311px;
+  top: 439px;
   position: absolute;
   color: rgba(61, 21, 21, 0.2);
 }

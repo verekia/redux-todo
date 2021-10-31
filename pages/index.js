@@ -110,7 +110,7 @@ const IndexPage = ({ initialTodos }) => {
       <div className={`${style.menu}`}>
         <div className={`${style.menuFortyHigh}`}>
           <div className={`${style.horizontalOrFlexOnly} ${style.flexDirectionColumn} ${style.paddingEdge} ${style.titles}`}>
-            <h2 className={`${style.medTitles} ${style.titlesBiggest}`}>React</h2>
+            <h2 className={`${style.titlesBiggest}`}>React</h2>
             <h3 className={`${style.smallTitles} ${style.titlesMedium}`}>Example</h3>
             <p className={`${style.titlesSmallest}`}>Source</p>
             <h3 className={`${style.smallTitles} ${style.titlesMedium}`}>React + Backbone.js</h3>
@@ -125,22 +125,22 @@ const IndexPage = ({ initialTodos }) => {
         </div>
         <div
           className={`${style.menuTwentyHigh} ${style.horizontalOrFlexOnly} ${style.dottedTopBottom} ${style.alignItemsCenter} ${style.justifyContentSpaceAround} ${style.flexDirectionColumn} ${style.paddingTopAndBottom}`}>
-          <FontAwesomeIcon icon={faQuoteLeft} />
+          <FontAwesomeIcon icon={faQuoteLeft} className={style.faQuoteLeft} />
           <div className={`${style.speechBubbleClippy} ${style.horizontalOrFlexOnly} ${style.justifyContentSpaceAround}`}>
             <p className={`${style.speechBubbleClippyText}`}>React is a JavaScript library for creating user interfaces.Its
               core principles are declarative code,
               efficiency, and flexibility.Simply specify what your component looks like and React will keep it
               up-to-date when the underlying data changes.</p>
           </div>
-          <FontAwesomeIcon icon={faQuoteRight} />
+          <FontAwesomeIcon icon={faQuoteRight} className={style.faQuoteRight} />
           <div className={`${style.horizontalOrFlexOnly} ${style.reactLabelSpace} ${style.justifyContentFlexEnd} ${style.alignItemsCenter} ${style.wider}`}>
             <p className={`${style.reactLabel}`}>React</p>
           </div>
-        </div >
+        </div>
         <div className={`${style.menuThirtyFiveHigh}`}>
           <div
             className={`${style.horizontalOrFlexOnly} ${style.menuHalfHigh} ${style.justifyContentSpaceAround} ${style.flexDirectionColumn} ${style.paddingEdge} ${style.paddingTopAndBottom}`}>
-            <h2 className={`${style.medTitles} ${style.titlesBiggest}`}>Official Resources</h2>
+            <h2 className={`${style.titlesBiggest}`}>Official Resources</h2>
             <p className={`${style.titlesSmallest}`}>Tutorial</p>
             <p className={`${style.titlesSmallest}`}>Philosophy</p>
             <p className={`${style.titlesSmallest}`}>Support</p>
@@ -148,7 +148,7 @@ const IndexPage = ({ initialTodos }) => {
           </div>
           <div
             className={`${style.horizontalOrFlexOnly} ${style.menuHalfHigh} ${style.justifyContentSpaceAround} ${style.flexDirectionColumn} ${style.paddingEdge}`}>
-            <h2 className={`${style.medTitles} ${style.titlesBiggest}`}>Community</h2>
+            <h2 className={`${style.titlesBiggest}`}>Community</h2>
             <p className={`${style.titlesSmallest}`}>ReactJS on Stack Overflow</p>
             <p className={`${style.titlesSmallest}`}>Google Groups Mailing List</p>
             <p className={`${style.titlesSmallest}`}>IRC</p>

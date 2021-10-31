@@ -3,7 +3,7 @@ import { createStore } from 'redux'
 
 import reducer from '../lib/redux'
 
-import '../styles/IndexPage.module.scss'
+import '../styles/styles.css'
 
 const store = createStore(
   reducer,
