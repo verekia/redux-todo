@@ -196,9 +196,9 @@ const IndexPage = ({ initialTodos }) => {
               </div>
               <div className={`${style.horizontalOrFlexOnly} ${style.justifyContentFlexStart} ${style.halfWidth}`}>
                 <div className={`${style.horizontalOrFlexOnly} ${style.justifyContentSpaceAround} ${style.stateTasks}`}>
-                  <button onClick={() => toggleReading("all")} className={read === "done" || read === "undone" ? `${style.buttonMode} ${style.stateTasksButtons}` : `${style.buttonModeActive} ${style.stateTasksButtons}`}>All</button>
+                  <button onClick={() => toggleReading("all")} className={read === "all" ? `${style.buttonModeActive} ${style.stateTasksButtons}` : `${style.buttonMode} ${style.stateTasksButtons}`}>All</button>
                   <button onClick={() => toggleReading("undone")} className={read === "undone" ? `${style.buttonModeActive} ${style.stateTasksButtons}` : `${style.buttonMode} ${style.stateTasksButtons}`}>Active</button>
-                  <button onClick={() => toggleReading("done")} className={read === "done" ? `${style.buttonModeActive} ${style.stateTasksButtons}` : `{style.buttonMode} ${style.stateTasksButtons}`}> Completed</button >
+                  <button onClick={() => toggleReading("done")} className={read === "done" ? `${style.buttonMode} ${style.stateTasksButtons}` : `${style.buttonModeActive} ${style.stateTasksButtons}`}> Completed</button >
                 </div>
               </div>
             </div>
