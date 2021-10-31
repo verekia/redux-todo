@@ -12,7 +12,7 @@ export const getServerSideProps = async () => {
   const allTodos = await prisma.todo.findMany();
   return {
     props: {
-      initialTodos: allTodos
+      initialTodos: allTodos,
     }
   }
 }
@@ -53,12 +53,11 @@ const IndexPage = ({ initialTodos }) => {
     return await response.json()
   }
 
-  const toggleTodo = async t => {
-    const todosFiltered = initialTodos.filter(todo => todo.id !== t)
-    const todoFiltered = initialTodos.filter(todo => todo.id === t)
-    todoFiltered[0].done = true
-    await updateTodo(todoFiltered[0])
-    setTodos([...todosFiltered, todoFiltered[0]])
+  const toggleTodo = async todoFiltered => {
+    const todosFiltered = initialTodos.filter(todo => todo.id !== todoFiltered.id)
+    todoFiltered.done = true
+    setTodos([...todosFiltered, todoFiltered])
+    await updateTodo(todoFiltered)
   }
 
   const updateTodo = async (todo) => {
@@ -98,7 +97,7 @@ const IndexPage = ({ initialTodos }) => {
   const task = t => {
     return (
       <div className="horizontal-or-flex-only padding-edge align-items-center grey-solid-top-bottom justify-content-flex-start background-todos-half" key={t.id}>
-        <input type="radio" onChange={() => toggleTodo(t.id)} checked={t.done ? true : false} />
+        <input type="radio" onChange={() => toggleTodo(t)} checked={t.done ? true : false} />
         <p>{t.content}</p>
         <button className="delete-button" onClick={() => removeTodo(t.id)}><FontAwesomeIcon icon={faTrash} /></button>
       </div>
@@ -192,7 +191,7 @@ const IndexPage = ({ initialTodos }) => {
             <div
               className="horizontal-or-flex-only background-todos-footer justify-content-flex-start align-items-center">
               <div className="horizontal-or-flex-only justify-content-flex-start half-width padding-edge">
-                <p>{read === "all" && numberTasks}{read === "done" && numberCompleteTasks}{read === "undone" && numberIncompleteTasks} items</p>
+                <p>{initialTodos.length} Items</p>
               </div>
               <div className="horizontal-or-flex-only justify-content-flex-start half-width">
                 <div className="horizontal-or-flex-only justify-content-space-around state-tasks">
