@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faChevronDown, faTrash, faQuoteLeft, faQuoteRight } from '@fortawesome/free-solid-svg-icons'
 import { v4 as uuidv4 } from 'uuid';
 import { PrismaClient } from '@prisma/client'
+import style from '../styles/IndexPage.module.scss'
 
 const prisma = new PrismaClient();
 
@@ -96,78 +97,78 @@ const IndexPage = ({ initialTodos }) => {
 
   const task = t => {
     return (
-      <div className="horizontal-or-flex-only padding-edge align-items-center grey-solid-top-bottom justify-content-flex-start background-todos-half" key={t.id}>
+      <div className={`${style.horizontalOrFlexOnly} ${style.paddingEdge} ${style.alignItemsCenter} ${style.greySolidTopBottom} ${style.justifyContentFlexStart} ${style.backgroundTodosHalf}`} key={t.id}>
         <input type="radio" onChange={() => toggleTodo(t)} checked={t.done ? true : false} />
         <p>{t.content}</p>
-        <button className="delete-button" onClick={() => removeTodo(t.id)}><FontAwesomeIcon icon={faTrash} /></button>
-      </div>
+        <button className={`${style.deleteButton}`} onClick={() => removeTodo(t.id)}><FontAwesomeIcon icon={faTrash} /></button>
+      </div >
     )
   }
 
   return (
-    <div className="horizontal-or-flex-only">
-      <div className="menu">
-        <div className="menu-fourty-high">
-          <div className="horizontal-or-flex-only flex-direction-column padding-edge titles">
-            <h2 className="titles-biggest">React</h2>
-            <h3 className="titles-medium">Example</h3>
-            <p className="titles-smallest">Source</p>
-            <h3 className="titles-medium">React + Backbone.js</h3>
-            <p className="titles-smallest">Demo, Source</p>
-            <h3 className="titles-medium">Scala.js + React</h3>
-            <p className="titles-smallest">Demo, Source</p>
-            <h3 className="titles-medium">TypeScript + React</h3>
-            <p className="titles-smallest">Demo, Source</p>
-            <h3 className="titles-medium">React + Alt</h3>
-            <p className="titles-smallest">Demo, Source</p>
+    <div className={`${style.horizontalOrFlexOnly} ${style.all}`}>
+      <div className={`${style.menu}`}>
+        <div className={`${style.menuFortyHigh}`}>
+          <div className={`${style.horizontalOrFlexOnly} ${style.flexDirectionColumn} ${style.paddingEdge} ${style.titles}`}>
+            <h2 className={`${style.medTitles} ${style.titlesBiggest}`}>React</h2>
+            <h3 className={`${style.smallTitles} ${style.titlesMedium}`}>Example</h3>
+            <p className={`${style.titlesSmallest}`}>Source</p>
+            <h3 className={`${style.smallTitles} ${style.titlesMedium}`}>React + Backbone.js</h3>
+            <p className={`${style.titlesSmallest}`}>Demo, Source</p>
+            <h3 className={`${style.smallTitles} ${style.titlesMedium}`}>Scala.js + React</h3>
+            <p className={`${style.titlesSmallest}`}>Demo, Source</p>
+            <h3 className={`${style.smallTitles} ${style.titlesMedium}`}>TypeScript + React</h3>
+            <p className={`${style.titlesSmallest}`}>Demo, Source</p>
+            <h3 className={`${style.smallTitles} ${style.titlesMedium}`}>React + Alt</h3>
+            <p className={`${style.titlesSmallest}`}>Demo, Source</p>
           </div>
         </div>
         <div
-          className="menu-twenty-high horizontal-or-flex-only dotted-top-bottom align-items-center justify-content-space-around flex-direction-column padding-top-and-bottom">
+          className={`${style.menuTwentyHigh} ${style.horizontalOrFlexOnly} ${style.dottedTopBottom} ${style.alignItemsCenter} ${style.justifyContentSpaceAround} ${style.flexDirectionColumn} ${style.paddingTopAndBottom}`}>
           <FontAwesomeIcon icon={faQuoteLeft} />
-          <div className="speech-bubble-clippy horizontal-or-flex-only justify-content-space-around">
-            <p className="speech-bubble-clippy-text">React is a JavaScript library for creating user interfaces. Its
+          <div className={`${style.speechBubbleClippy} ${style.horizontalOrFlexOnly} ${style.justifyContentSpaceAround}`}>
+            <p className={`${style.speechBubbleClippyText}`}>React is a JavaScript library for creating user interfaces.Its
               core principles are declarative code,
-              efficiency, and flexibility. Simply specify what your component looks like and React will keep it
+              efficiency, and flexibility.Simply specify what your component looks like and React will keep it
               up-to-date when the underlying data changes.</p>
           </div>
           <FontAwesomeIcon icon={faQuoteRight} />
-          <div className="horizontal-or-flex-only react-label-space justify-content-flex-end align-items-center wider">
-            <p className="react-label">React</p>
+          <div className={`${style.horizontalOrFlexOnly} ${style.reactLabelSpace} ${style.justifyContentFlexEnd} ${style.alignItemsCenter} ${style.wider}`}>
+            <p className={`${style.reactLabel}`}>React</p>
           </div>
-        </div>
-        <div className="menu-thirty-five-high">
+        </div >
+        <div className={`${style.menuThirtyFiveHigh}`}>
           <div
-            className="horizontal-or-flex-only menu-half-high justify-content-space-around flex-direction-column padding-edge padding-top-and-bottom">
-            <h2 className="titles-biggest">Official Resources</h2>
-            <p className="titles-smallest">Tutorial</p>
-            <p className="titles-smallest">Philosophy</p>
-            <p className="titles-smallest">Support</p>
-            <p className="titles-smallest">Flux architecture example</p>
+            className={`${style.horizontalOrFlexOnly} ${style.menuHalfHigh} ${style.justifyContentSpaceAround} ${style.flexDirectionColumn} ${style.paddingEdge} ${style.paddingTopAndBottom}`}>
+            <h2 className={`${style.medTitles} ${style.titlesBiggest}`}>Official Resources</h2>
+            <p className={`${style.titlesSmallest}`}>Tutorial</p>
+            <p className={`${style.titlesSmallest}`}>Philosophy</p>
+            <p className={`${style.titlesSmallest}`}>Support</p>
+            <p className={`${style.titlesSmallest}`}>Flux architecture example</p>
           </div>
           <div
-            className="horizontal-or-flex-only menu-half-high justify-content-space-around flex-direction-column padding-edge">
-            <h2 className="titles-biggest">Community</h2>
-            <p className="titles-smallest">ReactJS on Stack Overflow</p>
-            <p className="titles-smallest">Google Groups Mailing List</p>
-            <p className="titles-smallest">IRC</p>
+            className={`${style.horizontalOrFlexOnly} ${style.menuHalfHigh} ${style.justifyContentSpaceAround} ${style.flexDirectionColumn} ${style.paddingEdge}`}>
+            <h2 className={`${style.medTitles} ${style.titlesBiggest}`}>Community</h2>
+            <p className={`${style.titlesSmallest}`}>ReactJS on Stack Overflow</p>
+            <p className={`${style.titlesSmallest}`}>Google Groups Mailing List</p>
+            <p className={`${style.titlesSmallest}`}>IRC</p>
           </div>
         </div>
       </div>
-      <div className="horizontal-or-flex-only background align-items-center flex-direction-column">
+      <div className={`${style.horizontalOrFlexOnly} ${style.background} ${style.alignItemsCenter} ${style.flexDirectionColumn}`}>
         <div
-          className="horizontal-or-flex-only background-items justify-content-space-between flex-direction-column">
-          <div className="background-title horizontal-or-flex-only justify-content-space-around">
-            <h1>todos</h1>
+          className={`${style.horizontalOrFlexOnly} ${style.backgroundItems} ${style.justifyContentSpaceBetween} ${style.flexDirectionColumn}`}>
+          <div className={`${style.backgroundTitle} ${style.horizontalOrFlexOnly} ${style.justifyContentSpaceAround}`}>
+            <h1 className={`${style.bigTitles}`}>todos</h1>
           </div>
-          <div className="background-todos horizontal-or-flex-only flex-direction-column flex-grow-10 drop-shadow-edge">
-            <form onSubmit={handleSubmit} className="horizontal-or-flex-only background-todos-form drop-shadow-edge">
-              <div className="horizontal-or-flex-only padding-edge align-items-center">
+          <div className={`${style.backgroundTodos} ${style.horizontalOrFlexOnly} ${style.flexDirectionColumn} ${style.flexGrow10} ${style.dropShadowEdge}`}>
+            <form onSubmit={handleSubmit} className={`${style.horizontalOrFlexOnly} ${style.backgroundTodosForm} ${style.dropShadowEdge}`}>
+              <div className={`${style.horizontalOrFlexOnly} ${style.paddingEdge} ${style.alignItemsCenter}`}>
                 <FontAwesomeIcon icon={faChevronDown} />
-                <input value={inputValue} name="todo" className="no-outline" placeholder="What needs to be done?" onChange={e => setInputValue(e.target.value)} />
+                <input value={inputValue} name="todo" className={`${style.noOutline}`} placeholder="What needs to be done?" onChange={e => setInputValue(e.target.value)} />
               </div>
             </form>
-            <div className="horizontal-or-flex-only background-todos-list flex-direction-column flex-grow-10">
+            <div className={`${style.horizontalOrFlexOnly} ${style.backgroundTodosList} ${style.flexDirectionColumn} ${style.flexGrow10}`}>
               {
                 todos ?
                   todos.map(t => {
@@ -180,37 +181,37 @@ const IndexPage = ({ initialTodos }) => {
                     }
                   }
                   ) :
-                  <div className="horizontal-or-flex-only padding-edge align-items-center grey-solid-top-bottom justify-content-flex-start background-todos-half">
+                  <div className={`${style.horizontalOrFlexOnly} ${style.paddingEdge} ${style.alignItemsCenter} ${style.greySolidTopBottom} ${style.justifyContentFlexStart} ${style.backgroundTodosHalf}`}>
                     <p>No tasks</p>
                   </div>
               }
               <div
-                className="horizontal-or-flex-only padding-edge align-items-center grey-solid-top-bottom justify-content-flex-start background-todos-half">
+                className={`${style.horizontalOrFlexOnly} ${style.paddingEdge} ${style.alignItemsCenter} ${style.greySolidTopBottom} ${style.justifyContentFlexStart} ${style.backgroundTodosHalf}`}>
               </div>
             </div>
             <div
-              className="horizontal-or-flex-only background-todos-footer justify-content-flex-start align-items-center">
-              <div className="horizontal-or-flex-only justify-content-flex-start half-width padding-edge">
+              className={`${style.horizontalOrFlexOnly} ${style.backgroundTodosFooter} ${style.justifyContentFlexStart} ${style.alignItemsCenter}`}>
+              <div className={`${style.horizontalOrFlexOnly} ${style.justifyContentFlexStart} ${style.halfWidth} ${style.paddingEdge}`}>
                 <p>{initialTodos.length} Items</p>
               </div>
-              <div className="horizontal-or-flex-only justify-content-flex-start half-width">
-                <div className="horizontal-or-flex-only justify-content-space-around state-tasks">
-                  <button onClick={() => toggleReading("all")} className={read === "done" || read === "undone" ? "button-mode" : "button-mode-active"}>All</button>
-                  <button onClick={() => toggleReading("undone")} className={read === "undone" ? "button-mode-active" : "button-mode"}>Active</button>
-                  <button onClick={() => toggleReading("done")} className={read === "done" ? "button-mode-active" : "button-mode"}>Completed</button>
+              <div className={`${style.horizontalOrFlexOnly} ${style.justifyContentFlexStart} ${style.halfWidth}`}>
+                <div className={`${style.horizontalOrFlexOnly} ${style.justifyContentSpaceAround} ${style.stateTasks}`}>
+                  <button onClick={() => toggleReading("all")} className={read === "done" || read === "undone" ? `${style.buttonMode} ${style.stateTasksButtons}` : `${style.buttonModeActive} ${style.stateTasksButtons}`}>All</button>
+                  <button onClick={() => toggleReading("undone")} className={read === "undone" ? `${style.buttonModeActive} ${style.stateTasksButtons}` : `${style.buttonMode} ${style.stateTasksButtons}`}>Active</button>
+                  <button onClick={() => toggleReading("done")} className={read === "done" ? `${style.buttonModeActive} ${style.stateTasksButtons}` : `{style.buttonMode} ${style.stateTasksButtons}`}> Completed</button >
                 </div>
               </div>
             </div>
           </div>
           <div
-            className="horizontal-or-flex-only flex-direction-column justify-content-space-around align-items-center background-credits">
-            <p className="credits">Double-click to edit a todo</p>
-            <p className="credits">Created by Jo</p>
-            <p className="credits">Part of TodoMVC</p>
-          </div>
-        </div>
-      </div>
-    </div>
+            className={`${style.horizontalOrFlexOnly} ${style.flexDirectionColumn} ${style.justifyContentSpaceAround} ${style.alignItemsCenter} ${style.backgroundCredits}`}>
+            <p className={`${style.credits}`}>Double-click to edit a todo</p>
+            <p className={`${style.credits}`}>Created by Jo</p>
+            <p className={`${style.credits}`}>Part of TodoMVC</p>
+          </div >
+        </div >
+      </div >
+    </div >
   )
 }
 

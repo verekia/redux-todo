@@ -1,8 +1,8 @@
-.horizontal-or-flex-only {
+.horizontalOrFlexOnly {
   display: flex;
 }
 
-.delete-button {
+.deleteButton {
   border: none;
   background-color: transparent;
   cursor: pointer;
@@ -25,19 +25,19 @@
   }
 }
 
-.button-mode {
+.buttonMode {
   border: none;
   background-color: transparent;
   cursor: pointer;
 }
 
-.button-mode-active {
+.buttonModeActive {
   border: none;
   background-color: rgba(177, 104, 104, 0.247);
   cursor: pointer;
 }
 
-.drop-shadow-edge {
+.dropShadowEdge {
   box-shadow: 2px 2px hsl(0deg 49% 16% / 10%);
 }
 
@@ -49,12 +49,12 @@
   height: 100%;
 }
 
-.titles-biggest {
+.titlesBiggest {
   margin-top: 12px;
   margin-bottom: 9px;
 }
 
-h1 {
+.bigTitles {
   color: rgba(175, 47, 47, 0.15);
   font-size: 60px;
   font-weight: 100;
@@ -62,15 +62,15 @@ h1 {
   margin-top: 15px;
 }
 
-h2 {
+.medTitles {
   margin: 0px;
 }
 
-h3 {
+.smallTitles {
   margin: 0px;
 }
 
-body {
+.all {
   height: 100vh;
   width: 100vw;
   margin: 0px;
@@ -78,12 +78,12 @@ body {
   font-weight: lighter;
 }
 
-.titles-medium {
+.titlesMedium {
   margin-bottom: 0px;
   font-size: 18px;
 }
 
-.titles-smallest {
+.titlesSmallest {
   margin-top: 0px;
   font-size: 14px;
   margin-bottom: 9px;
@@ -113,7 +113,7 @@ body {
   margin-right: 3px;
 }
 
-.speech-bubble-clippy-text {
+.speechBubbleClippyText {
   min-width: 250px;
   width: 250px;
   font-size: 11px;
@@ -126,11 +126,11 @@ body {
   font: Helvetica, Arial, sans-serif;
 }
 
-.no-outline {
+.noOutline {
   border: none;
 }
 
-.no-outline:focus {
+.noOutline:focus {
   outline: 0;
 }
 
@@ -140,7 +140,7 @@ body {
   background-color: #fbfbfb;
 }
 
-.align-items-center {
+.alignItemsCenter {
   align-items: center;
 }
 
@@ -149,115 +149,115 @@ body {
   background-color: #f5f5f5;
 }
 
-.menu-fourty-high {
+.menuFortyHigh {
   height: 40%
 }
 
-.menu-thirty-five-high {
+.menuThirtyFiveHigh {
   height: 35%
 }
 
-.menu-thirty-high {
+.menuThirtyHigh {
   height: 30%
 }
 
-.menu-twenty-high {
+.menuTwentyHigh {
   height: 20%;
 }
 
-.menu-fifty-high {
+.menuFiftyHigh {
   height: 50%
 }
 
-.dotted-top-bottom {
+.dottedTopBottom {
   border-top: 1px dashed rgba(0, 0, 0, .3);
   border-bottom: 1px dashed rgba(0, 0, 0, .3);
 }
 
-.grey-solid-top-bottom {
+.greySolidTopBottom {
   border-top: 1px solid rgba(0, 0, 0, .1);
   border-bottom: 1px solid rgba(0, 0, 0, .1);
 }
 
-.padding-edge {
+.paddingEdge {
   padding-left: 4%;
 }
 
-.padding-top-and-bottom {
+.paddingTopAndBottom {
   padding-top: 15px;
   padding-bottom: 9px;
 }
 
-.background-todos-form {
+.backgroundTodosForm {
   height: 70.1px;
 }
 
-.background-todos-list {
+.backgroundTodosList {
   min-height: 154px;
 }
 
-.background-todos-footer {
+.backgroundTodosFooter {
   min-height: 56.1px;
   padding-top: 56.1px;
 }
 
-.half-width {
+.halfWidth {
   width: 50%;
 }
 
-.state-tasks, button {
+.stateTasksButtons {
   height: 50%;
 }
 
 
-.flex-grow-10 {
+.flexGrow10 {
   flex-grow: 10;
 }
 
-.background-items {
+.backgroundItems {
   min-width: 397.5px;
   top: -155px;
   min-height: 432px;
 }
 
-.background-title {
+.backgroundTitle {
   height: 20%
 }
 
-.background-credits {
+.backgroundCredits {
   min-height: 50px;
   height: 50px;
   margin-top: 15px;
 }
 
-.background-todos {
+.backgroundTodos {
   min-height: 60%;
   max-height: 590px;
   background-color: #fbfbfb;
 }
 
 
-.justify-content-space-around {
+.justifyContentSpaceAround {
   justify-content: space-around;
 }
 
-.justify-content-space-between {
+.justifyContentSpaceBetween {
   justify-content: space-between;
 }
 
-.justify-content-flex-end {
+.justifyContentFlexEnd {
   justify-content: flex-end;
 }
 
-.justify-content-flex-start {
+.justifyContentFlexStart {
   justify-content: flex-start;
 }
 
-.flex-direction-column {
+.flexDirectionColumn {
   flex-direction: column;
 }
 
-.speech-bubble-clippy {
+.speechBubbleClippy {
   width: 90%;
   min-width: 90%;
   height: 140px;
@@ -266,18 +266,18 @@ body {
   clip-path: polygon(0% 0%, 100% 0%, 100% 75%, 89% 75%, 89% 85%, 63% 75%, 0% 75%);
 }
 
-.react-label-space {
+.reactLabelSpace {
   height: 15px;
   max-height: 15px;
   padding-right: 15px;
   margin-bottom: 10px;
 }
 
-.menu-half-high {
+.menuHalfHigh {
   height: 50%;
 }
 
-.react-label {
+.reactLabel {
   margin-top: 0px;
   margin-bottom: 0px;
   color: #b83f45;
