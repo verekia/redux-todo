@@ -1,16 +1,17 @@
-import { useSelector, useDispatch } from 'react-redux';
+import store from './src/store';
 
-import { add, decrement, increment, countSelector, doubleCountSelector } from '../lib/redux';
+import Header from './src/features/header/Header';
+import Footer from './src/features/footer/Footer';
+import TodoList from './src/features/todos/TodoList';
 
 const IndexPage = () => {
-  const dispatch = useDispatch();
-  const count = useSelector(countSelector);
-  const doubleCount = useSelector(doubleCountSelector);
-
   return (
-    <>
-      <h1>Redux Todo App</h1>
-    </>
+    <div className="container mx-auto max-w-3xl bg-gradient-to-r from-green-400 to-blue-500 my-8 p-9 rounded-3xl font-poppins">
+      <h1 className="text-center text-8xl font-bold text-white">ToDooo</h1>
+      <Header />
+      <TodoList />
+      <Footer />
+    </div>
   );
 };
 
