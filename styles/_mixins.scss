@@ -1,0 +1,131 @@
+
+@mixin paddingEdge {
+    padding-left: 4%;
+  }
+
+  @mixin heightThirty {
+    height: 30px;
+  }
+  
+  @mixin buttonMode {
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+  }
+  
+  @mixin buttonModeActive {
+    border: none;
+    background-color: rgba(177, 104, 104, 0.247);
+    cursor: pointer;
+  }
+  
+  @mixin stateTasksButtons {
+    height: 50%;
+  }
+  
+  @mixin halfWidth {
+    width: 50%;
+  }
+  
+  @mixin wider {
+    width: 100%;
+  }
+  
+  @mixin justifyContentFlexEnd {
+    justify-content: flex-end;
+  }
+  
+  @mixin dropShadowEdge {
+    box-shadow: 2px 2px hsl(0deg 49% 16% / 10%);
+  }
+  
+  @mixin backgroundTodosList {
+    min-height: 154px;
+  }
+  
+  @mixin justifyContentSpaceBetween {
+    justify-content: space-between;
+  }
+  
+  @mixin backgroundItems {
+    min-width: 397.5px;
+    top: -155px;
+    min-height: 432px;
+  }
+  
+  @mixin halfWidth {
+    width: 50%;
+  }
+  
+  @mixin menuHalfHigh {
+    height: 50%;
+  }
+  
+  @mixin greySolidTopBottom {
+    border-top: 1px solid rgba(0, 0, 0, .1);
+    border-bottom: 1px solid rgba(0, 0, 0, .1);
+  }
+  
+  @mixin justifyContentFlexStart {
+    justify-content: flex-start;
+  }
+  
+  @mixin menuTwentyHigh {
+    height: 20%;
+  }
+  
+  @mixin backgroundTodosFooter {
+    min-height: 56.1px;
+    padding-top: 56.1px;
+  }
+  
+  @mixin dottedTopBottom {
+    border-top: 1px dashed rgba(0, 0, 0, .3);
+    border-bottom: 1px dashed rgba(0, 0, 0, .3);
+  }
+  
+  @mixin flexDirectionColumn {
+    flex-direction: column;
+  }
+  
+  @mixin titles {
+    height: 100%;
+  }
+  
+  @mixin makeFlex {
+    display: flex;
+  }
+  
+  @mixin paddingTopAndBottom {
+    padding-top: 15px;
+    padding-bottom: 9px;
+  }
+  
+  @mixin justifyContentSpaceAround {
+    justify-content: space-around;
+  }
+  
+  @mixin all {
+    height: 100vh;
+    width: 100vw;
+    margin: 0px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: lighter;
+  }
+  
+  @mixin alignItemsCenter {
+    align-items: center;
+  }
+  
+  @mixin backgroundReplacement {
+    height: 100vh;
+    background-color: #f5f5f5;
+  }
+  
+  @mixin backgroundReplacementResponsiveSmall {
+    @media (max-width: 900px) { @content };
+  }
+  
+  @mixin backgroundReplacementResponsiveBig {
+    @media (min-width: 900px) { @content };
+  }

@@ -1,5 +1,180 @@
+@import "mixins";
+
+.form {
+  @include makeFlex;
+  @include dropShadowEdge;
+  height: 70.1px;
+}
+
+.formField {
+  @include makeFlex;
+  @include paddingEdge;
+  @include alignItemsCenter;
+}
+
+.boxButtonsState {
+  @include makeFlex;
+  @include justifyContentFlexStart;
+  @include halfWidth;
+  @include heightThirty;
+}
+.todoArea {
+  @include makeFlex;
+  @include backgroundTodosList;
+  @include flexDirectionColumn;
+}
+
+.speechBubbleClippy {
+  @include makeFlex;
+  @include justifyContentSpaceAround;
+  width: 90%;
+  min-width: 90%;
+  height: 140px;
+  min-height: 140px;
+  background-color: rgba(0, 0, 0, .04);
+  clip-path: polygon(0% 0%, 100% 0%, 100% 75%, 89% 75%, 89% 85%, 63% 75%, 0% 75%);
+}
+
+.entirePage {
+  @include makeFlex;
+  @include all;
+}
+
+.buttonInactive {
+  @include buttonMode;
+  @include stateTasksButtons;
+}
+
+.buttonActive {
+  @include buttonModeActive;
+  @include stateTasksButtons;
+}
+
+.listBottomThirdMenu {
+  @include makeFlex;
+  @include menuHalfHigh;
+  @include flexDirectionColumn;
+  @include justifyContentSpaceAround;
+  @include paddingEdge;
+}
+
+.lowerListBottomThirdMenu {
+  @include makeFlex;
+  @include menuHalfHigh;
+  @include flexDirectionColumn;
+  @include justifyContentSpaceAround;
+  @include paddingEdge;
+}
+
+.itemLengthBox {
+  @include makeFlex;
+  @include paddingEdge;
+  @include justifyContentFlexStart;
+  @include heightThirty;
+  @include alignItemsCenter;
+}
+
+.mainBackground {
+  @include makeFlex;
+  @include backgroundReplacement;
+  @include alignItemsCenter;
+  @include flexDirectionColumn;
+  @include backgroundReplacementResponsiveSmall {
+    width: 100vw;
+  }
+  @include backgroundReplacementResponsiveBig {
+      width: calc(100% - 347px);
+  }
+}
+
 .horizontalOrFlexOnly {
   display: flex;
+}
+
+.firstGrid {
+    height: 20%;
+    @include makeFlex;
+    @include justifyContentSpaceAround;
+}
+
+.buttonsState {
+  @include makeFlex;
+  @include justifyContentSpaceAround;
+  min-height: 40px;
+}
+
+.secondGrid {
+  min-height: 60%;
+  max-height: 590px;
+  background-color: #fbfbfb;
+  @include makeFlex;
+  @include flexDirectionColumn;
+  @include dropShadowEdge;
+}
+
+.firstRowMenu {
+  @include makeFlex;
+  @include flexDirectionColumn;
+  @include paddingEdge;
+  @include titles;
+}
+
+.task {
+  @include makeFlex;
+  @include paddingEdge;
+  @include alignItemsCenter;
+  @include greySolidTopBottom;
+  @include justifyContentFlexStart;
+}
+
+.bubbleRowMenu {
+  @include makeFlex;
+  @include menuTwentyHigh;
+  @include dottedTopBottom;
+  @include alignItemsCenter;
+  @include justifyContentSpaceAround;
+  @include flexDirectionColumn;
+  @include paddingTopAndBottom;
+}
+
+.creditRoll {
+  @include alignItemsCenter;
+  @include makeFlex;
+  @include flexDirectionColumn;
+  @include justifyContentSpaceAround;
+  min-height: 50px;
+  height: 50px;
+  margin-top: 15px;
+}
+.listTasks {
+  @include makeFlex;
+  @include paddingEdge;
+  @include alignItemsCenter;
+  @include greySolidTopBottom;
+  @include justifyContentFlexStart;
+}
+
+.lastBoxTodos {
+  @include makeFlex;
+  @include paddingEdge;
+  @include alignItemsCenter;
+  @include greySolidTopBottom;
+  @include justifyContentFlexStart;
+
+}
+
+.innerLastBoxTodos {
+  @include makeFlex;
+  @include backgroundTodosFooter;
+  @include justifyContentSpaceBetween;
+  @include alignItemsCenter;
+}
+
+.grid {
+  @include makeFlex;
+  @include backgroundItems;
+  @include justifyContentSpaceBetween;
+  @include flexDirectionColumn;
 }
 
 .deleteButton {
@@ -7,7 +182,6 @@
   background-color: transparent;
   cursor: pointer;
   color: rgba(61, 21, 21, 0.4);
-
 }
 
 @media (max-width: 900px) {
@@ -23,30 +197,6 @@
   .background {
     width: calc(100% - 347px);
   }
-}
-
-.buttonMode {
-  border: none;
-  background-color: transparent;
-  cursor: pointer;
-}
-
-.buttonModeActive {
-  border: none;
-  background-color: rgba(177, 104, 104, 0.247);
-  cursor: pointer;
-}
-
-.dropShadowEdge {
-  box-shadow: 2px 2px hsl(0deg 49% 16% / 10%);
-}
-
-.wider {
-  width: 100%;
-}
-
-.titles {
-  height: 100%;
 }
 
 .titlesBiggest {
@@ -66,21 +216,10 @@
   margin: 0px;
 }
 
-.smallTitles {
-  margin: 0px;
-}
-
-.all {
-  height: 100vh;
-  width: 100vw;
-  margin: 0px;
-  font-family: Arial, Helvetica, sans-serif;
-  font-weight: lighter;
-}
-
 .titlesMedium {
   margin-bottom: 0px;
   font-size: 18px;
+  margin-top: 0px;
 }
 
 .titlesSmallest {
@@ -127,6 +266,7 @@
   font: Helvetica, Arial, sans-serif;
 }
 
+
 .noOutline {
   border: none;
 }
@@ -135,19 +275,11 @@
   outline: 0;
 }
 
+
 .menu {
   min-width: 347px;
   height: 100%;
   background-color: #fbfbfb;
-}
-
-.alignItemsCenter {
-  align-items: center;
-}
-
-.background {
-  height: 100vh;
-  background-color: #f5f5f5;
 }
 
 .menuFortyHigh {
@@ -158,128 +290,15 @@
   height: 35%
 }
 
-.menuThirtyHigh {
-  height: 30%
-}
-
-.menuTwentyHigh {
-  height: 20%;
-}
-
-.menuFiftyHigh {
-  height: 50%
-}
-
-.dottedTopBottom {
-  border-top: 1px dashed rgba(0, 0, 0, .3);
-  border-bottom: 1px dashed rgba(0, 0, 0, .3);
-}
-
-.greySolidTopBottom {
-  border-top: 1px solid rgba(0, 0, 0, .1);
-  border-bottom: 1px solid rgba(0, 0, 0, .1);
-}
-
-.paddingEdge {
-  padding-left: 4%;
-}
-
-.paddingTopAndBottom {
-  padding-top: 15px;
-  padding-bottom: 9px;
-}
-
-.backgroundTodosForm {
-  height: 70.1px;
-}
-
-.backgroundTodosList {
-  min-height: 154px;
-}
-
-.backgroundTodosFooter {
-  min-height: 56.1px;
-  padding-top: 56.1px;
-}
-
-.halfWidth {
-  width: 50%;
-}
-
-.stateTasksButtons {
-  height: 50%;
-}
-
-.stateTasks  {
-  min-height: 40px;
-}
-
-
-.flexGrow10 {
-  flex-grow: 10;
-}
-
-.backgroundItems {
-  min-width: 397.5px;
-  top: -155px;
-  min-height: 432px;
-}
-
-.backgroundTitle {
-  height: 20%
-}
-
-.backgroundCredits {
-  min-height: 50px;
-  height: 50px;
-  margin-top: 15px;
-}
-
-.backgroundTodos {
-  min-height: 60%;
-  max-height: 590px;
-  background-color: #fbfbfb;
-}
-
-
-.justifyContentSpaceAround {
-  justify-content: space-around;
-}
-
-.justifyContentSpaceBetween {
-  justify-content: space-between;
-}
-
-.justifyContentFlexEnd {
-  justify-content: flex-end;
-}
-
-.justifyContentFlexStart {
-  justify-content: flex-start;
-}
-
-.flexDirectionColumn {
-  flex-direction: column;
-}
-
-.speechBubbleClippy {
-  width: 90%;
-  min-width: 90%;
-  height: 140px;
-  min-height: 140px;
-  background-color: rgba(0, 0, 0, .04);
-  clip-path: polygon(0% 0%, 100% 0%, 100% 75%, 89% 75%, 89% 85%, 63% 75%, 0% 75%);
-}
-
 .reactLabelSpace {
+  @include wider;
+  @include makeFlex;
+  @include justifyContentFlexEnd;
+  @include alignItemsCenter;
   height: 15px;
   max-height: 15px;
   padding-right: 15px;
   margin-bottom: 10px;
-}
-
-.menuHalfHigh {
-  height: 50%;
 }
 
 .reactLabel {
