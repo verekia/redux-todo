@@ -127,5 +127,9 @@
   }
   
   @mixin backgroundReplacementResponsiveBig {
-    @media (min-width: 900px) { @content };
+    @media (min-width: 901px) { @content };
+  }
+
+  @mixin backgroundReplacementResponsiveSmallest {
+    @media (max-width: 400px) { @content };
   }
